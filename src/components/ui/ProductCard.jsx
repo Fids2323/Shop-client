@@ -37,7 +37,7 @@ const ProductCard = ({item}) => {
 				<div className="flex items-center justify-between p-2">
 					<span className="text-main text-lg font-medium">${item.price}</span>
 					<span className="active:scale-110">
-						<i class="ri-add-line text-lg bg-main text-white rounded p-1" onClick={addToCart}></i>
+						<i className="ri-add-line text-lg bg-main text-white rounded p-1" onClick={addToCart}></i>
 					</span>
 				</div>
 			</div>

@@ -11,6 +11,7 @@ import axios from "../../axios.js";
 const ProductDetails = ({product}) => {
 	const [tab, setTab] = useState("desc");
 	const [rating, setRating] = useState(null);
+	const [reviews, setReviews] = useState([]);
 	const reviewUser = useRef("");
 	const reviewMessage = useRef("");
 	const {id} = useParams();
@@ -21,7 +22,19 @@ const ProductDetails = ({product}) => {
 
 	useEffect(() => {
 		dispatch(fetchProducts());
-	}, []);
+		fetchReviews();
+	}, [id]);
+
+	const fetchReviews = async () => {
+		try {
+			dispatch(fetchProducts());
+			const {data} = await axios.get(`/review/${id}`);
+			setReviews(data);
+			console.log(reviews);
+		} catch (error) {
+			console.error("Error fetching reviews:", error);
+		}
+	};
 
 	const similarProducts = products.filter((item) => item.category === product.category);
 
@@ -41,6 +54,7 @@ const ProductDetails = ({product}) => {
 			const {data} = await axios.post(`/review/${id}`, reviewObj);
 			console.log(data);
 			toast.success("Review added");
+			fetchReviews();
 		} catch (e) {
 			toast.error("Review error");
 		}

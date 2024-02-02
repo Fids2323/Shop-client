@@ -108,9 +108,7 @@ const Shops = () => {
 
 					<section className="mb-4">
 						<div className="container pt-5 pb-4 mx-auto">
-							<div className="lg:w-full flex items-center justify-center text-center">
-								<ProductList data={sliceData} />
-							</div>
+							<div className="lg:w-full flex items-center justify-center text-center">{sliceData.length ? <ProductList data={sliceData} /> : <h1>Not found</h1>}</div>
 						</div>
 					</section>
 

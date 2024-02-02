@@ -32,7 +32,7 @@ const Header = () => {
 	const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
 	const toggleProfileActions = () => {
-		profileActionRef.current.classList.toggle("hidden");
+		if (headerRef !== null) profileActionRef.current.classList.toggle("hidden");
 	};
 
 	const handleScroll = () => {
@@ -45,7 +45,7 @@ const Header = () => {
 				headerRef.current.classList.add("md:sticky");
 				headerRef.current.classList.add("shadow-2xl");
 			} else {
-				headerRef.current.classList.remove("top-0", "left-0", "z-50", "bg-white", "sticky", "shadow-2xl");
+				if (headerRef !== null) headerRef.current.classList.remove("top-0", "left-0", "z-50", "bg-white", "sticky", "shadow-2xl");
 			}
 		});
 	};
@@ -54,6 +54,7 @@ const Header = () => {
 		if (window.innerWidth < 768) {
 			setIsOpen(!isOpen);
 			// toggle body class to prevent scrolling
+
 			if (!isOpen) {
 				document.body.classList.add("overflow-hidden");
 			} else {

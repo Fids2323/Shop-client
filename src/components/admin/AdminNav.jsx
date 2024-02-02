@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import {Link, NavLink} from "react-router-dom";
 import userImg from "../../assets/images/user.png";
 import {useDispatch} from "react-redux";
@@ -24,12 +24,17 @@ const adminNav = [
 ];
 
 const AdminNav = () => {
+	const [isHidden, setIsHidden] = useState(true);
 	const dispatch = useDispatch();
 	const profileActionRef = useRef(null);
 
 	const toggleProfileActions = () => {
-		profileActionRef.current.classList.toggle("hidden");
+		setIsHidden(!isHidden);
 	};
+
+	// const toggleProfileActions = () => {
+	// 	profileActionRef.current.classList.toggle("hidden");
+	// };
 
 	const onClickLogout = () => {
 		if (window.confirm("Are you sure you want to log?")) {
@@ -62,8 +67,7 @@ const AdminNav = () => {
 									<i className="ri-settings-2-line text-white cursor-pointer"></i>
 								</span>
 								<div className="relative">
-									<img src={userImg} alt="user icon" className="w-8 h-8 cursor-pointer active:scale-110" onClick={toggleProfileActions} />
-
+									<img src={userImg} alt="user icon" className={`w-8 h-8 cursor-pointer active:scale-110 ${isHidden ? "hidden" : ""}`} onClick={toggleProfileActions} />
 									<div
 										className="flex items-center justify-center flex-col absolute bg-gray-300 gap-2 top-10 text-main text-lg font-semibold border-2 border-main right-0 w-32 p-3 rounded hidden"
 										ref={profileActionRef}
