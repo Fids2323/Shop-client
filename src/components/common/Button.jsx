@@ -5,9 +5,8 @@ const Button = ({backgroundColor, children, onClick}) => {
 
 	return (
 		<button
-			className={`px-4 h-10 lg:w-48 py-2 text-sm md:text-md text-center rounded-md font-medium cursor-pointer ${backgroundColor} ${getColorText(
-				backgroundColor
-			)} hover:text-hover active:scale-110`}
+			className={`px-4 h-10 lg:w-48 py-2 text-sm md:text-md text-center rounded-md font-medium cursor-pointer
+				 ${backgroundColor} ${getColorText(backgroundColor)} hover:text-hover active:scale-110`}
 			onClick={onClick}
 		>
 			{children}
